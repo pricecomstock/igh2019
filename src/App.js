@@ -1,20 +1,32 @@
 import React, { Component } from "react";
 import "nes.css/css/nes.min.css";
 
+import GameState from "./game/gameState";
+
 import Actions from "./components/Actions";
+import Health from "./components/Health";
 
 class App extends Component {
   state = {
-    options: [
+    gameState: new GameState(),
+    actions: [
       {
         id: 1,
         text: "Attack",
-        available: false
+        disabled: false,
+        clickHandler: () => alert("Attack")
       },
       {
         id: 2,
         text: "Defend",
-        available: false
+        disabled: false,
+        clickHandler: () => alert("Defend")
+      },
+      {
+        id: 3,
+        text: "Run",
+        disabled: false,
+        clickHandler: () => alert("Run")
       }
     ]
   };
@@ -22,9 +34,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <Actions options={this.state.options} />
-        </header>
+        <Actions actions={this.state.actions} />
+        <Health
+          maxHealth={this.state.gameState.maxHealth}
+          currentHealth={this.state.gameState.currentHealth}
+        />
       </div>
     );
   }
