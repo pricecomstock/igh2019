@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import "nes.css/css/nes.min.css";
-
-import GameState from "./game/gameState";
+import C from "./constants";
 
 import Actions from "./components/Actions";
 import Health from "./components/Health";
 
 class App extends Component {
   state = {
-    gameState: new GameState(),
     actions: [
       {
         id: 1,
@@ -28,7 +26,16 @@ class App extends Component {
         disabled: false,
         clickHandler: () => alert("Run")
       }
-    ]
+    ],
+
+    // GAME STATE
+    game: {
+      turnNumber: C.STARTING_TURN,
+      points: C.STARTING_POINTS,
+
+      maxHealth: C.STARTING_HEALTH,
+      currentHealth: C.STARTING_HEALTH
+    }
   };
 
   render() {
@@ -36,12 +43,34 @@ class App extends Component {
       <div className="App">
         <Actions actions={this.state.actions} />
         <Health
-          maxHealth={this.state.gameState.maxHealth}
-          currentHealth={this.state.gameState.currentHealth}
+          maxHealth={this.state.game.maxHealth}
+          currentHealth={this.state.game.currentHealth}
         />
-        {this.state.gameState.points}
+        {this.state.game.points}
       </div>
     );
+  }
+
+  nextGameState = () => {
+    const gameState = this.state.game;
+    return {
+      turnNumber: gameState.turnNumber + 1,
+      points: gameState.points + 10,
+      maxHealth: gameState.maxHealth,
+      currentHealth: gameState.currentHealth
+    };
+  };
+
+  gameStep = () => {
+    this.setState({ game: this.nextGameState() });
+  };
+
+  componentDidMount() {
+    this.gameInterval = setInterval(this.gameStep, C.TURN_MILLISECONDS);
+  }
+
+  componentWillMount() {
+    clearInterval(this.gameInterval);
   }
 }
 
