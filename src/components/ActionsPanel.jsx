@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NesButton from "./NesButton";
 import PropTypes from "prop-types";
 
-class Actions extends Component {
+class ActionsPanel extends Component {
   render() {
     let buttonStyle = {
       width: "100%",
@@ -22,6 +22,6 @@ class Actions extends Component {
 }
 
 // PropTypes
-Actions.propTypes = { actions: PropTypes.array.isRequired };
+ActionsPanel.propTypes = { actions: PropTypes.array.isRequired };
 
-export default Actions;
+export default ActionsPanel;

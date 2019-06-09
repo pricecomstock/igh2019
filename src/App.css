@@ -1,8 +1,8 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 20%;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas: "view view view actions" "view view view actions" "view view view actions" "stats stats stats stats";
+  grid-template-columns: 1fr 1fr 1fr 30%;
+  grid-template-rows: 1fr 1fr 1fr 30%;
+  grid-template-areas: "view view view actions" "view view view actions" "view view view actions" "stats stats stats settings";
   width: 100vw;
   height: 100vh;
 }
@@ -13,6 +13,10 @@
 
 .view {
   grid-area: view;
+}
+
+.settings {
+  grid-area: settings;
 }
 
 .actions {

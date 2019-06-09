@@ -1,34 +1,17 @@
 import React, { Component } from "react";
 import "nes.css/css/nes.min.css";
 import "./App.css";
-import C from "./constants";
 
-import Actions from "./components/Actions";
+import C from "./game/constants";
+import actions from "./game/actions";
+
+import ActionsPanel from "./components/ActionsPanel";
 import Stats from "./components/Stats";
 import Health from "./components/Health";
 
 class App extends Component {
   state = {
-    actions: [
-      {
-        id: 1,
-        text: "Earthquake",
-        disabled: false,
-        clickHandler: () => alert("Attack")
-      },
-      {
-        id: 2,
-        text: "Heavy Hurricane Season",
-        disabled: false,
-        clickHandler: () => alert("Defend")
-      },
-      {
-        id: 3,
-        text: "Volcano",
-        disabled: false,
-        clickHandler: () => alert("Run")
-      }
-    ],
+    actions: actions,
 
     // GAME STATE
     game: {
@@ -59,7 +42,7 @@ class App extends Component {
           currentHealth={this.state.game.currentHealth}
         />
         {this.state.game.points} */}
-        <Actions actions={this.state.actions} />
+        <ActionsPanel actions={this.state.actions} />
         <Stats stats={displayStats} />
       </div>
     );
