@@ -40,14 +40,18 @@ class App extends Component {
 
       birthRate: C.STARTING_BIRTHRATE_1000,
       deathRate: C.STARTING_DEATHRATE_1000,
-      foodPercent: C.STARTING_FOOD_PERCENT,
+      foodPercent: C.STARTING_FOOD_PERCENT
 
-      modifiers: {
-        foodPercent: null,
-        temperature: null
-      },
-
-      nextTick: []
+      // modifiers: {
+      //   foodPercent: null,
+      //   temperature: null
+      // },
+    },
+    cooldowns: {
+      quake: 0,
+      hurricane: 0,
+      volcano: 0,
+      drought: 0
     }
   };
 
@@ -100,13 +104,65 @@ class App extends Component {
     );
   }
 
-  quake = () => {};
-  hurricane = () => {};
-  volcano = () => {};
-  drought = () => {};
+  quake = () => {
+    if (this.state.cooldowns.quake > 0) {
+      return;
+    }
+    const nextGameState = this.nextGameState();
+    this.tickCooldowns(24, 0, 0, 0);
+    this.state.cooldowns.quake = 24;
+    this.setState(nextGameState);
+  };
+  hurricane = () => {
+    if (this.state.cooldowns.hurricane > 0) {
+      return;
+    }
+    const nextGameState = this.nextGameState();
+    this.tickCooldowns(0, 3, 0, 0);
+    this.state.cooldowns.hurricane = 3;
+    this.setState(nextGameState);
+  };
+  volcano = () => {
+    if (this.state.cooldowns.volcano > 0) {
+      return;
+    }
+    const nextGameState = this.nextGameState();
+    this.tickCooldowns(0, 0, 36, 0);
+    this.state.cooldowns.volcano = 36;
+    this.setState(nextGameState);
+  };
+  drought = () => {
+    if (this.state.cooldowns.drought > 0) {
+      return;
+    }
+    const nextGameState = this.nextGameState();
+    this.tickCooldowns(0, 0, 0, 60);
+    this.state.cooldowns.drought = 60;
+    this.setState(nextGameState);
+  };
+
+  tickCooldowns = (
+    quakeChange,
+    hurricaneChange,
+    volcanoChange,
+    droughtChange
+  ) => {
+    const cooldowns = {
+      quake: Math.max(this.state.cooldowns.quake - 1 + quakeChange, 0),
+      hurricane: Math.max(
+        this.state.cooldowns.hurricane - 1 + hurricaneChange,
+        0
+      ),
+      volcano: Math.max(this.state.cooldowns.volcano - 1 + volcanoChange, 0),
+      drought: Math.max(this.state.cooldowns.drought - 1 + droughtChange, 0)
+    };
+
+    this.setState({ cooldowns });
+  };
 
   nextGameState = () => {
     const gameState = this.state.game;
+
     return {
       turnNumber: gameState.turnNumber + 1,
       points: gameState.points + 10,
@@ -133,6 +189,7 @@ class App extends Component {
   };
 
   gameStep = () => {
+    this.tickCooldowns(0, 0, 0, 0);
     this.setState({ game: this.nextGameState() });
   };
 

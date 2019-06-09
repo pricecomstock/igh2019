@@ -43,10 +43,10 @@ class StatsPanel extends Component {
           EARTH | {this.props.stats.year} - {this.props.stats.month}
         </p>
 
-        <Health
+        {/* <Health
           maxHealth={this.props.health.maxHealth}
           currentHealth={this.props.health.currentHealth}
-        />
+        /> */}
         <br />
         <p>
           Population: {numberWithCommas(this.props.stats.population)} humans
