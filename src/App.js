@@ -39,6 +39,7 @@ class App extends Component {
           maxHealth={this.state.gameState.maxHealth}
           currentHealth={this.state.gameState.currentHealth}
         />
+        {this.state.gameState.points}
       </div>
     );
   }
