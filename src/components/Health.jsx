@@ -10,11 +10,9 @@ export class Health extends Component {
       <div className="icon-list">
         {allHearts.map((isFull, index) => {
           if (isFull) {
-            return <i className="nes-icon is-medium heart" key={index} />;
+            return <i className="nes-icon heart" key={index} />;
           } else {
-            return (
-              <i className="nes-icon is-medium heart is-empty" key={index} />
-            );
+            return <i className="nes-icon heart is-empty" key={index} />;
           }
         })}
       </div>

@@ -13,7 +13,7 @@ const actions = [
   },
   {
     id: 3,
-    text: "Volcano",
+    text: "Supervolcano",
     disabled: false,
     clickHandler: () => alert("Run")
   }

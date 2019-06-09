@@ -1,7 +1,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 30%;
-  grid-template-rows: 1fr 1fr 1fr 30%;
+  grid-template-rows: 1fr 1fr 1fr 35%;
   grid-template-areas: "view view view actions" "view view view actions" "view view view actions" "stats stats stats settings";
   width: 100vw;
   height: 100vh;
@@ -9,6 +9,7 @@
 
 .stats {
   grid-area: stats;
+  font-size: 0.8em;
 }
 
 .view {
@@ -20,11 +21,12 @@
 }
 
 .actions {
+  font-size: 0.8em;
   grid-area: actions;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .actionWrapper {

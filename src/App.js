@@ -6,7 +6,7 @@ import C from "./game/constants";
 import actions from "./game/actions";
 
 import ActionsPanel from "./components/ActionsPanel";
-import Stats from "./components/Stats";
+import StatsPanel from "./components/StatsPanel";
 import Health from "./components/Health";
 
 class App extends Component {
@@ -35,6 +35,12 @@ class App extends Component {
       population: this.state.game.population,
       temperature: this.state.game.temperature
     };
+
+    let health = {
+      maxHealth: this.state.game.maxHealth,
+      currentHealth: this.state.game.currentHealth
+    };
+
     return (
       <div className="App grid-container">
         {/* <Health
@@ -43,7 +49,7 @@ class App extends Component {
         />
         {this.state.game.points} */}
         <ActionsPanel actions={this.state.actions} />
-        <Stats stats={displayStats} />
+        <StatsPanel stats={displayStats} health={health} />
       </div>
     );
   }
