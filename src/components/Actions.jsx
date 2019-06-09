@@ -4,9 +4,20 @@ import PropTypes from "prop-types";
 
 class Actions extends Component {
   render() {
-    return this.props.actions.map(action => (
-      <NesButton key={action.id} action={action} />
-    ));
+    let buttonStyle = {
+      width: "100%",
+      marginTop: "20px"
+    };
+    return (
+      <div className="actions nes-container is-rounded with-title">
+        <p className="title">Actions</p>
+        {this.props.actions.map(action => (
+          <div className="actionWrapper">
+            <NesButton key={action.id} action={action} style={buttonStyle} />
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 
