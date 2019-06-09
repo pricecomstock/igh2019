@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 30%;
   grid-template-rows: 1fr 1fr 1fr 35%;
-  grid-template-areas: "view view view actions" "view view view actions" "view view view actions" "stats stats stats settings";
+  grid-template-areas: "view view view actions" "view view view actions" "view view view actions" "stats stats activity activity";
   width: 100vw;
   height: 100vh;
 }
@@ -14,6 +14,9 @@
 
 .settings {
   grid-area: settings;
+}
+.activity {
+  grid-area: activity;
 }
 
 .actions {

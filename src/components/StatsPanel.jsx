@@ -35,15 +35,13 @@ function getTemperatureClasses(t) {
 
 class StatsPanel extends Component {
   render() {
-    let buttonStyle = {
-      width: "100%",
-      marginTop: "20px"
-    };
     return (
       <div className="stats nes-container is-dark is-rounded with-title">
         <p className="title">Stats</p>
 
-        <p>EARTH</p>
+        <p>
+          EARTH | {this.props.stats.year} - {this.props.stats.month}
+        </p>
 
         <Health
           maxHealth={this.props.health.maxHealth}
@@ -56,13 +54,24 @@ class StatsPanel extends Component {
         <p>
           Average Global Temperature:{" "}
           <span className={getTemperatureClasses(this.props.stats.temperature)}>
-            {this.props.stats.temperature}° F
+            {this.props.stats.temperature.toFixed(2)}° F
           </span>
         </p>
         <p>
           CO2:{" "}
           <span className={getCo2Classes(this.props.stats.co2)}>
-            {this.props.stats.co2} ppm
+            {this.props.stats.co2.toFixed(2)} ppm
+          </span>
+        </p>
+        <p>
+          <span className="nes-badge">
+            BR: {this.props.stats.rates.birthRate.toFixed(1)}
+          </span>
+          <span className="nes-badge">
+            DR: {this.props.stats.rates.deathRate.toFixed(1)}
+          </span>
+          <span className="nes-badge">
+            Food: {(this.props.stats.rates.foodPercent * 100).toFixed(2)}%
           </span>
         </p>
       </div>
