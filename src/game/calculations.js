@@ -26,7 +26,7 @@ export const calculatePopulation = (
 ) => {
   const ppy = 12;
   const rateBase = 1000;
-  const newPopulation = Math.floor(
+  let newPopulation = Math.floor(
     population +
       ((birthRate / rateBase) * population) / ppy -
       ((deathRate / rateBase) * population) / ppy
@@ -40,7 +40,10 @@ export const calculatePopulation = (
 };
 
 export const calculateBirthrate = (birthrate, foodP) => {
-  return birthrate * (1 - (1 - foodP) * C.MONTHFACTOR);
+  return Math.max(
+    birthrate * (1 - (1 - foodP) * C.MONTHFACTOR),
+    C.MINIMUM_BIRTH_RATE
+  );
   // return birthrate * ((1 / foodP - 1) * C.MONTHFACTOR + 1);
 };
 export const calculateDeathrate = (deathrate, foodP) => {

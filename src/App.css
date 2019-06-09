@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 30%;
   grid-template-rows: 1fr 1fr 1fr 40%;
-  grid-template-areas: "view view view actions" "view view view actions" "view view view actions" "stats stats stats activity";
+  grid-template-areas: "view view view actions" "view view view actions" "view view view actions" "stats stats activity activity";
   width: 100vw;
   height: 100vh;
 }
@@ -19,6 +19,9 @@
   grid-area: activity;
 }
 
+.activity-log {
+  font-size: 0.75em;
+}
 .actions {
   font-size: 0.8em;
   grid-area: actions;

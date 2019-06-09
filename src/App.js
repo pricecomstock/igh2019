@@ -1,3 +1,12 @@
+/*
+THIS WAS WRITTEN FOR A GAME JAM. IT BEGAN AS A TECHNICALLY SOUND REACT TUTORIAL AND
+ENDED IN A HAZE OF RUSHED CODE AND UNSCALABLE SHORTCUTS.
+
+IF YOU ARE A PROSPECTIVE EMPLOYER, PLEASE DON'T NOT HIRE ME BASED ON THIS CODE.
+
+THANKS.
+*/
+
 import React, { Component } from "react";
 import "nes.css/css/nes.min.css";
 import "./App.css";
@@ -121,6 +130,23 @@ class App extends Component {
     });
   };
 
+  adjustTemp = tempDiff => {
+    this.setState({
+      game: {
+        ...this.state.game,
+        temperature: this.state.game.temperature + tempDiff
+      }
+    });
+  };
+  adjustCo2 = co2Diff => {
+    this.setState({
+      game: {
+        ...this.state.game,
+        co2: this.state.game.co2 + co2Diff
+      }
+    });
+  };
+
   quake = () => {
     if (this.state.cooldowns.quake > 0) {
       return;
@@ -130,7 +156,6 @@ class App extends Component {
     const nextGameState = this.nextGameState();
     this.kill(deathToll);
     this.tickCooldowns(24, 0, 0, 0);
-    this.state.cooldowns.quake = 24;
     this.setState(nextGameState);
   };
   hurricane = () => {
@@ -144,7 +169,6 @@ class App extends Component {
     this.kill(deathToll);
 
     this.tickCooldowns(0, 3, 0, 0);
-    this.state.cooldowns.hurricane = 3;
     this.setState(nextGameState);
   };
   volcano = () => {
@@ -156,7 +180,6 @@ class App extends Component {
     const nextGameState = this.nextGameState();
     this.kill(deathToll);
     this.tickCooldowns(0, 0, 36, 0);
-    this.state.cooldowns.volcano = 36;
     this.setState(nextGameState);
   };
   drought = () => {
@@ -168,12 +191,16 @@ class App extends Component {
     const nextGameState = this.nextGameState();
     this.kill(deathToll);
     this.tickCooldowns(0, 0, 0, 60);
-    this.state.cooldowns.drought = 60;
     this.setState(nextGameState);
   };
 
   addActivity = activity => {
-    this.setState({ activityLog: [...this.state.activityLog, activity] });
+    this.setState({
+      activityLog: [activity, ...this.state.activityLog].slice(
+        0,
+        C.MAX_ACTIVITY_LOG_LENGTH
+      )
+    });
   };
 
   tickCooldowns = (

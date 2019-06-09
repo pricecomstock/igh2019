@@ -4,9 +4,9 @@ import { link } from "fs";
 export class ActivityLog extends Component {
   render() {
     return (
-      <div className="nes-container is-dark is-rounded with-title">
+      <div className="activity-log nes-container is-dark is-rounded with-title">
         <title>Activity Log</title>
-        <ul className="is-disc nes-list">
+        <ul className="is-circle nes-list">
           {this.props.log.map((activity, index) => {
             return <li key={index}>{activity}</li>;
           })}
