@@ -7,7 +7,7 @@ import actions from "./game/actions";
 
 import ActionsPanel from "./components/ActionsPanel";
 import StatsPanel from "./components/StatsPanel";
-import Health from "./components/Health";
+import EarthView from "./components/EarthView";
 
 class App extends Component {
   state = {
@@ -48,6 +48,7 @@ class App extends Component {
           currentHealth={this.state.game.currentHealth}
         />
         {this.state.game.points} */}
+        <EarthView />
         <ActionsPanel actions={this.state.actions} />
         <StatsPanel stats={displayStats} health={health} />
       </div>

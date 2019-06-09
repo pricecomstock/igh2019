@@ -5,8 +5,10 @@
   "dependencies": {
     "immutability-helper": "^3.0.0",
     "nes.css": "^2.2.0",
+    "particles.js": "^2.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-particles-js": "^2.6.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {

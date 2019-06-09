@@ -43,6 +43,8 @@ class StatsPanel extends Component {
       <div className="stats nes-container is-dark is-rounded with-title">
         <p className="title">Stats</p>
 
+        <p>EARTH</p>
+
         <Health
           maxHealth={this.props.health.maxHealth}
           currentHealth={this.props.health.currentHealth}
@@ -53,13 +55,13 @@ class StatsPanel extends Component {
         </p>
         <p>
           Average Global Temperature:{" "}
-          <span class={getTemperatureClasses(this.props.stats.temperature)}>
+          <span className={getTemperatureClasses(this.props.stats.temperature)}>
             {this.props.stats.temperature}° F
           </span>
         </p>
         <p>
           CO2:{" "}
-          <span class={getCo2Classes(this.props.stats.co2)}>
+          <span className={getCo2Classes(this.props.stats.co2)}>
             {this.props.stats.co2} ppm
           </span>
         </p>
@@ -69,6 +71,6 @@ class StatsPanel extends Component {
 }
 
 // PropTypes
-StatsPanel.propTypes = { stats: PropTypes.array.isRequired };
+StatsPanel.propTypes = { stats: PropTypes.object.isRequired };
 
 export default StatsPanel;

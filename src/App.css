@@ -12,10 +12,6 @@
   font-size: 0.8em;
 }
 
-.view {
-  grid-area: view;
-}
-
 .settings {
   grid-area: settings;
 }
@@ -32,4 +28,27 @@
 .actionWrapper {
   width: 100%;
   margin-top: 12px;
+}
+
+.view {
+  grid-area: view;
+  background-color: #000000;
+  text-align: center;
+  width: 100%;
+  background-image: url("/assets/earth.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.earth-photo {
+  height: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.earth-particles {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
