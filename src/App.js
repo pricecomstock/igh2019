@@ -14,12 +14,17 @@ import {
   calculateCo2,
   calculateTemperature
 } from "./game/calculations";
-
 import ActionsPanel from "./components/ActionsPanel";
 import ActivityLog from "./components/ActivityLog";
 import StatsPanel from "./components/StatsPanel";
 import EarthView from "./components/EarthView";
 
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 class App extends Component {
   state = {
     actions: [quake, hurricane, volcano, drought],
@@ -97,18 +102,33 @@ class App extends Component {
         />
         {this.state.game.points} */}
         <EarthView />
-        <ActionsPanel actions={this.state.actions} />
+        <ActionsPanel
+          cooldowns={this.state.cooldowns}
+          actions={this.state.actions}
+        />
         <StatsPanel stats={displayStats} health={health} />
         <ActivityLog log={this.state.activityLog} />
       </div>
     );
   }
 
+  kill = deaths => {
+    this.setState({
+      game: {
+        ...this.state.game,
+        population: this.state.game.population - deaths
+      }
+    });
+  };
+
   quake = () => {
     if (this.state.cooldowns.quake > 0) {
       return;
     }
+    const deathToll = randomInt(10000, 1000000);
+    this.addActivity(`An earthquake kills ${numberWithCommas(deathToll)}`);
     const nextGameState = this.nextGameState();
+    this.kill(deathToll);
     this.tickCooldowns(24, 0, 0, 0);
     this.state.cooldowns.quake = 24;
     this.setState(nextGameState);
@@ -117,7 +137,12 @@ class App extends Component {
     if (this.state.cooldowns.hurricane > 0) {
       return;
     }
+
+    const deathToll = randomInt(5, 100000);
+    this.addActivity(`A hurricane kills ${numberWithCommas(deathToll)}`);
     const nextGameState = this.nextGameState();
+    this.kill(deathToll);
+
     this.tickCooldowns(0, 3, 0, 0);
     this.state.cooldowns.hurricane = 3;
     this.setState(nextGameState);
@@ -126,7 +151,10 @@ class App extends Component {
     if (this.state.cooldowns.volcano > 0) {
       return;
     }
+    const deathToll = randomInt(1000000, 100000000);
+    this.addActivity(`A volcano kills ${numberWithCommas(deathToll)}`);
     const nextGameState = this.nextGameState();
+    this.kill(deathToll);
     this.tickCooldowns(0, 0, 36, 0);
     this.state.cooldowns.volcano = 36;
     this.setState(nextGameState);
@@ -135,10 +163,17 @@ class App extends Component {
     if (this.state.cooldowns.drought > 0) {
       return;
     }
+    const deathToll = randomInt(100000, 1000000000);
+    this.addActivity(`A drought kills ${numberWithCommas(deathToll)}`);
     const nextGameState = this.nextGameState();
+    this.kill(deathToll);
     this.tickCooldowns(0, 0, 0, 60);
     this.state.cooldowns.drought = 60;
     this.setState(nextGameState);
+  };
+
+  addActivity = activity => {
+    this.setState({ activityLog: [...this.state.activityLog, activity] });
   };
 
   tickCooldowns = (

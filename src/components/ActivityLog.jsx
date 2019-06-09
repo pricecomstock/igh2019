@@ -7,8 +7,8 @@ export class ActivityLog extends Component {
       <div className="nes-container is-dark is-rounded with-title">
         <title>Activity Log</title>
         <ul className="is-disc nes-list">
-          {this.props.log.map(activity => {
-            return <li>activity</li>;
+          {this.props.log.map((activity, index) => {
+            return <li key={index}>{activity}</li>;
           })}
         </ul>
       </div>

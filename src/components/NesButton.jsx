@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class NesButton extends Component {
-  //   getClass = () => {
-  //     return {
-  //       "is-disabled": this.props.disabled
-  //     };
-  //   };
   render() {
+    let classes = "nes-btn ";
+    if (this.props.isDisabled) {
+      classes += "is-disabled";
+    }
     const { text, clickHandler } = this.props.action;
     return (
-      <button onClick={clickHandler} className="nes-btn">
+      <button onClick={clickHandler} className={classes}>
         {text}
       </button>
     );

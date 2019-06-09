@@ -9,7 +9,10 @@ class ActionsPanel extends Component {
         <p className="title">Actions</p>
         {this.props.actions.map(action => (
           <div className="actionWrapper" key={action.id}>
-            <NesButton action={action} />
+            <NesButton
+              action={action}
+              isDisabled={this.props.cooldowns[action.textid] > 0}
+            />
           </div>
         ))}
       </div>
